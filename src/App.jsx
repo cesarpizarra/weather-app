@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { api } from "./api/api";
 import BgCloud from "./assets/bg-cloud.jpg";
 import BgSun from "./assets/bg-sun.jpg";
+import BgMist from "./assets/bg-mist.jpg";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -51,6 +52,8 @@ const App = () => {
         return `url(${BgCloud})`;
       } else if (weather === "clear" || weather === "sunny") {
         return `url(${BgSun})`;
+      } else if (weather === "fog" || weather === "mist") {
+        return `url(${BgMist})`;
       }
     }
     return "";
