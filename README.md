@@ -26,8 +26,11 @@ To get started with the Weather App, follow these steps:
 4. Set up your OpenWeatherMap API key:
    - Visit [OpenWeatherMap](https://openweathermap.org/) and sign up for a free account.
    - Copy your API key.
-   - Create a new file named `.env` in the root directory of the project.
-   - Add the following line to the `.env` file: `REACT_APP_API_KEY=your-api-key`.
+   - const api = {
+  key: 'YOUR_API_KEY',
+  base: 'https://api.openweathermap.org/data/2.5/',
+};
+
 5. Start the development server: `npm run dev`
 6. Open your browser and navigate to `http://localhost:3000`.
 
