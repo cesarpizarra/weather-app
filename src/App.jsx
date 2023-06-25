@@ -9,6 +9,7 @@ const App = () => {
   const [query, setQuery] = useState("Philippines");
   const [currentDay, setCurrentDay] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const fetchWeatherData = async () => {
     try {
@@ -16,11 +17,15 @@ const App = () => {
       const response = await fetch(
         `${api.base}weather?q=${query}&appid=${api.key}`
       );
-      const data = await response.json();
-      setWeatherData(data);
+      if (response.ok) {
+        const data = await response.json();
+        setWeatherData(data);
+      } else {
+        setIsModalVisible(true);
+      }
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000); // Changed duration to 2 seconds (2000 milliseconds)
+      }, 1000);
     } catch (error) {
       console.error("Error fetching weather data:", error);
       setIsLoading(false);
@@ -80,6 +85,10 @@ const App = () => {
     transition: "background-image 2.5s ease",
   };
 
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div
       className="weather-app min-h-screen flex items-center justify-center bg-cover bg-center px-10"
@@ -99,7 +108,7 @@ const App = () => {
           />
           <button
             onClick={handleSearch}
-            className="hover:scale-[1.1] transition duration-300 px-4 rounded-r-lg bg-blue-500 text-white font-bold p-2 border-blue-700 border-t border-b border-r"
+            className="hover:scale-[1.1] transition duration-300 px-4 rounded-md md:rounded-r-lg bg-blue-500 text-white font-bold p-2 border-blue-700 border-t border-b border-r"
           >
             Search
           </button>
@@ -129,6 +138,19 @@ const App = () => {
           <div className="text-gray-800">No weather data available</div>
         )}
       </div>
+      {isModalVisible && (
+        <div className="weather-modal">
+          <div className="weather-modal-content">
+            <h2 className="weather-modal-title">City Not Found</h2>
+            <p className="weather-modal-message">
+              The entered city was not found. Please try again.
+            </p>
+            <button onClick={closeModal} className="weather-modal-close-button">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
