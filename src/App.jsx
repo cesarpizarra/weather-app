@@ -82,22 +82,21 @@ const App = () => {
 
   return (
     <div
-      className="weather-app min-h-screen flex items-center justify-center bg-cover bg-center"
+      className="weather-app min-h-screen flex items-center justify-center bg-cover bg-center px-10"
       style={weatherContainerStyle}
     >
-      <div className="bg-white p-8 rounded-lg shadow-lg">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full md:w-3/4 lg:w-1/2">
         <h2 className="text-2xl font-bold mb-4">Weather App</h2>
-        <div className="flex items-center mb-4">
+        <div className="flex flex-col md:flex-row md:items-center mb-4">
           <input
             type="text"
             value={query}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             placeholder="Enter city name"
-            className="rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white
-    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="rounded p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2 md:mb-0 md:mr-2"
           />
-
           <button
             onClick={handleSearch}
             className="hover:scale-[1.1] transition duration-300 px-4 rounded-r-lg bg-blue-500 text-white font-bold p-2 border-blue-700 border-t border-b border-r"
