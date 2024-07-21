@@ -1,94 +1,114 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "Poppins";
-}
-
 /* Loading effect */
-.spinner {
-  width: 56px;
-  height: 56px;
-  display: grid;
-  border: 4.5px solid #0000;
-  border-radius: 50%;
-  border-color: #dbdcef #0000;
-  animation: spinner-e04l1k 1s infinite linear;
-}
-
-.spinner::before,
-.spinner::after {
-  content: "";
-  grid-area: 1/1;
-  margin: 2.2px;
-  border: inherit;
-  border-radius: 50%;
-}
-
-.spinner::before {
-  border-color: #474bff #0000;
-  animation: inherit;
-  animation-duration: 0.5s;
-  animation-direction: reverse;
-}
-
-.spinner::after {
-  margin: 8.9px;
-}
-
-@keyframes spinner-e04l1k {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-/* Modal if nothing city */
-
-.weather-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.container {
+  width: 250px;
+  height: 250px;
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 
-.weather-modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  text-align: center;
+.cloud {
+  width: 250px;
 }
 
-.weather-modal-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
+.front {
+  padding-top: 45px;
+  margin-left: 25px;
+  display: inline;
+  position: absolute;
+  z-index: 11;
+  animation: clouds 8s infinite;
+  animation-timing-function: ease-in-out;
 }
 
-.weather-modal-message {
-  margin-bottom: 16px;
+.back {
+  margin-top: -30px;
+  margin-left: 150px;
+  z-index: 12;
+  animation: clouds 12s infinite;
+  animation-timing-function: ease-in-out;
 }
 
-.weather-modal-close-button {
-  background-color: #f33939;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-weight: bold;
-  cursor: pointer;
+.right-front {
+  width: 45px;
+  height: 45px;
+  border-radius: 50% 50% 50% 0%;
+  background-color: #4c9beb;
+  display: inline-block;
+  margin-left: -25px;
+  z-index: 5;
 }
 
-.weather-modal-close-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5);
+.left-front {
+  width: 65px;
+  height: 65px;
+  border-radius: 50% 50% 0% 50%;
+  background-color: #4c9beb;
+  display: inline-block;
+  z-index: 5;
+}
+
+.right-back {
+  width: 50px;
+  height: 50px;
+  border-radius: 50% 50% 50% 0%;
+  background-color: #4c9beb;
+  display: inline-block;
+  margin-left: -20px;
+  z-index: 5;
+}
+
+.left-back {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 0% 50%;
+  background-color: #4c9beb;
+  display: inline-block;
+  z-index: 5;
+}
+
+.sun {
+  width: 120px;
+  height: 120px;
+  background: -webkit-linear-gradient(to right, #fcbb04, #fffc00);
+  background: linear-gradient(to right, #fcbb04, #fffc00);
+  border-radius: 60px;
+  display: inline;
+  position: absolute;
+}
+
+.sunshine {
+  animation: sunshines 2s infinite;
+}
+
+@keyframes sunshines {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes clouds {
+  0% {
+    transform: translateX(15px);
+  }
+
+  50% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(15px);
+  }
 }
